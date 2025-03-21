@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Start the SSH agent and add the key
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+# Reuse existing SSH agent session
+export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.* 2>/dev/null | head -n 1)
 
 # Navigate to your project directory
 cd ~/HR_Database || exit
